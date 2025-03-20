@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日检视工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>每日检视工具</h1>
+            </div>
+            <div class="sidebar-nav">
+                <div class="nav-item active" data-view="checklist">检视清单</div>
+                <div class="nav-item" data-view="calendar">检视日历</div>
+                <div class="nav-item" data-view="export">导出记录</div>
+            </div>
+            <div class="sidebar-footer">
+                <button class="theme-toggle">切换主题</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <div class="date-selector">
+                    <input type="date" id="date-picker">
+                    <button id="today-btn">今天</button>
+                </div>
+                <div class="actions">
+                    <button id="save-btn">保存</button>
+                    <button id="export-btn">导出</button>
+                </div>
+            </div>
+            
+            <!-- 检视清单视图 -->
+            <div class="checklist-view active">
+                <div class="checklist-container">
+                    <!-- 工作检视清单 -->
+                    <div class="checklist-section">
+                        <div class="section-header">
+                            <span>工作检视清单</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="section-content active" id="work-checklist">
+                            <!-- 动态生成的工作检视项目 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 生活检视清单 -->
+                    <div class="checklist-section">
+                        <div class="section-header">
+                            <span>生活检视清单</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="section-content active" id="life-checklist">
+                            <!-- 动态生成的生活检视项目 -->
+                        </div>
+                    </div>
+                    
+                    <!-- 职业规划检视清单 -->
+                    <div class="checklist-section">
+                        <div class="section-header">
+                            <span>职业规划检视清单</span>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="section-content active" id="career-checklist">
+                            <!-- 动态生成的职业规划检视项目 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 日历视图 -->
+            <div class="calendar-view">
+                <div class="calendar-header">
+                    <button id="prev-month">上个月</button>
+                    <h2 id="current-month">2024年5月</h2>
+                    <button id="next-month">下个月</button>
+                </div>
+                <div class="calendar-grid" id="calendar-grid">
+                    <!-- 动态生成的日历 -->
+                </div>
+            </div>
+            
+            <!-- 导出视图 -->
+            <div class="export-view">
+                <div class="export-options">
+                    <h3>导出选项</h3>
+                    <div>
+                        <label>
+                            <input type="checkbox" id="export-work" checked>
+                            包含工作检视清单
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" id="export-life" checked>
+                            包含生活检视清单
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" id="export-career" checked>
+                            包含职业规划检视清单
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" id="export-completed-only">
+                            仅导出已完成项目
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" id="export-with-notes" checked>
+                            包含笔记
+                        </label>
+                    </div>
+                    <button id="generate-export">生成预览</button>
+                    <button id="download-md">下载 Markdown</button>
+                </div>
+                <div class="export-preview" id="export-preview">
+                    <!-- 导出预览内容 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
