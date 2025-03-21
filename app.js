@@ -15,7 +15,7 @@ const views = document.querySelectorAll('.checklist-view, .calendar-view, .expor
 const sectionHeaders = document.querySelectorAll('.section-header');
 const workChecklistContainer = document.getElementById('work-checklist');
 const lifeChecklistContainer = document.getElementById('life-checklist');
-const careerChecklistContainer = document.getElementById('career-checklist');
+const studyChecklistContainer = document.getElementById('study-checklist');
 const calendarGrid = document.getElementById('calendar-grid');
 const currentMonthDisplay = document.getElementById('current-month');
 const prevMonthBtn = document.getElementById('prev-month');
@@ -122,7 +122,7 @@ function getCurrentDateData() {
         userData[dateKey] = {
             work: {},
             life: {},
-            career: {}
+            study: {}
         };
     }
     return userData[dateKey];
@@ -146,11 +146,11 @@ function renderChecklists() {
         lifeChecklistContainer.appendChild(createChecklistItem(item, itemData, 'life'));
     });
     
-    // 渲染职业规划检视清单
-    careerChecklistContainer.innerHTML = '';
-    careerChecklistData.forEach(item => {
-        const itemData = dateData.career[item.id] || { completed: false, notes: '' };
-        careerChecklistContainer.appendChild(createChecklistItem(item, itemData, 'career'));
+    // 渲染学习检视清单
+    studyChecklistContainer.innerHTML = '';
+    studyChecklistData.forEach(item => {
+        const itemData = dateData.study[item.id] || { completed: false, notes: '' };
+        studyChecklistContainer.appendChild(createChecklistItem(item, itemData, 'study'));
     });
 }
 
@@ -445,7 +445,7 @@ function generateExport() {
     
     const includeWork = document.getElementById('export-work').checked;
     const includeLife = document.getElementById('export-life').checked;
-    const includeCareer = document.getElementById('export-career').checked;
+    const includeStudy = document.getElementById('export-study').checked;
     const completedOnly = document.getElementById('export-completed-only').checked;
     const withNotes = document.getElementById('export-with-notes').checked;
     
@@ -481,11 +481,11 @@ function generateExport() {
         markdown += '\n';
     }
     
-    // 添加职业规划检视清单
-    if (includeCareer) {
-        markdown += '## 职业规划检视清单\n\n';
-        careerChecklistData.forEach(item => {
-            const itemData = dateData.career[item.id] || { completed: false, notes: '' };
+    // 添加学习检视清单
+    if (includeStudy) {
+        markdown += '## 学习检视清单\n\n';
+        studyChecklistData.forEach(item => {
+            const itemData = dateData.study[item.id] || { completed: false, notes: '' };
             if (!completedOnly || itemData.completed) {
                 markdown += `- [${itemData.completed ? 'x' : ' '}] ${item.title}\n`;
                 if (withNotes && itemData.notes) {
